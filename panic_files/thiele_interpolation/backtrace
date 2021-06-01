@@ -1,0 +1,95 @@
+  __          __        __  ___             
+ |__)  _\/_  |__) |  | /__`  |   ____\/_  | 
+ |      /\   |  \ \__/ .__/  |       /\   | 
+
+
+Verification of 13 items...
+error: [Prusti: unsupported feature] cast statements that create loans are not supported
+  --> panic_files/thiele_interpolation/thiele_interpolation.rs:11:9
+   |
+11 |         "{}\n{}\n{}",
+   |         ^^^^^^^^^^^^
+
+error: [Prusti: unsupported feature] unsupported type Float(F64)
+  --> panic_files/thiele_interpolation/thiele_interpolation.rs:18:1
+   |
+18 | / fn thiele(x: &[f64], y: &[f64], xin: f64) -> f64 {
+19 | |     let mut p: Vec<Vec<f64>> = (0..N).map(|i| (i..N).map(|_| 0.0).coll...
+20 | |  
+21 | |     (0..N).for_each(|i| p[i][0] = y[i]);
+...  |
+35 | |     y[0] + (xin - x[0]) / (p[0][1] + a)
+36 | | }
+   | |_^
+
+error: [Prusti: unsupported feature] unsupported type Float(F64)
+ --> panic_files/thiele_interpolation/thiele_interpolation.rs:5:34
+  |
+5 |     let x: Vec<f64> = (0..N).map(|i| i as f64 * STEP).collect();
+  |                                  ^^^^^^^^^^^^^^^^^^^
+
+error: [Prusti: unsupported feature] unsupported type Float(F64)
+ --> panic_files/thiele_interpolation/thiele_interpolation.rs:6:28
+  |
+6 |     let sin = x.iter().map(|x| x.sin()).collect::<Vec<_>>();
+  |                            ^^^^^^^^^^^
+
+error: [Prusti: unsupported feature] unsupported type Float(F64)
+ --> panic_files/thiele_interpolation/thiele_interpolation.rs:7:28
+  |
+7 |     let cos = x.iter().map(|x| x.cos()).collect::<Vec<_>>();
+  |                            ^^^^^^^^^^^
+
+error: [Prusti: unsupported feature] unsupported type Float(F64)
+ --> panic_files/thiele_interpolation/thiele_interpolation.rs:8:28
+  |
+8 |     let tan = x.iter().map(|x| x.tan()).collect::<Vec<_>>();
+  |                            ^^^^^^^^^^^
+
+error: [Prusti: unsupported feature] unsupported type Float(F64)
+  --> panic_files/thiele_interpolation/thiele_interpolation.rs:19:47
+   |
+19 |     let mut p: Vec<Vec<f64>> = (0..N).map(|i| (i..N).map(|_| 0.0).collec...
+   |                                               ^^^^^^^^^^^^^^^^^^^
+
+error: [Prusti: unsupported feature] unsupported type Float(F64)
+  --> panic_files/thiele_interpolation/thiele_interpolation.rs:19:58
+   |
+19 |     let mut p: Vec<Vec<f64>> = (0..N).map(|i| (i..N).map(|_| 0.0).collec...
+   |                                                          ^^^^^^^
+
+thread 'rustc' panicked at 'internal error: entered unreachable code', prusti-viper/src/encoder/procedure_encoder.rs:5001:98
+stack backtrace:
+   0: rust_begin_unwind
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/std/src/panicking.rs:493:5
+   1: core::panicking::panic_fmt
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/core/src/panicking.rs:92:14
+   2: core::panicking::panic
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/core/src/panicking.rs:50:5
+   3: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_statement
+   4: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_statement_at
+   5: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_blocks_group
+   6: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode
+   7: prusti_viper::encoder::encoder::Encoder::encode_procedure
+   8: prusti_viper::encoder::encoder::Encoder::process_encoding_queue
+   9: prusti_viper::verifier::Verifier::verify
+  10: prusti_driver::verifier::verify
+  11: <prusti_driver::callbacks::PrustiCompilerCalls as rustc_driver::Callbacks>::after_analysis
+  12: rustc_interface::queries::<impl rustc_interface::interface::Compiler>::enter
+  13: rustc_span::with_source_map
+  14: rustc_interface::interface::create_compiler_and_run
+  15: scoped_tls::ScopedKey<T>::set
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+
+error: internal compiler error: unexpected panic
+
+note: Prusti or the compiler unexpectedly panicked. This is a bug.
+
+note: We would appreciate a bug report: https://github.com/viperproject/prusti-dev/issues/new
+
+note: Prusti version: commit e8a9345e 2021-05-19 12:46:05 UTC, built on 2021-05-27 13:44:30 UTC
+
+query stack during panic:
+end of query stack
+error: aborting due to 8 previous errors
+

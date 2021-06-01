@@ -1,0 +1,130 @@
+  __          __        __  ___             
+ |__)  _\/_  |__) |  | /__`  |   ____\/_  | 
+ |      /\   |  \ \__/ .__/  |       /\   | 
+
+
+Verification of 22 items...
+error: [Prusti: unsupported feature] unsuported creation of unique borrows (implicitly created in closure bindings)
+  --> panic_files/stack_sol2/stack_sol2.rs:27:30
+   |
+27 |           self.next.take().map(|frame| {
+   |  ______________________________^
+28 | |             self.next = frame.next.as_ref().map(|frame| &**frame);
+29 | |             &frame.elem
+30 | |         })
+   | |_________^
+
+error: [Prusti: unsupported feature] unsuported creation of unique borrows (implicitly created in closure bindings)
+  --> panic_files/stack_sol2/stack_sol2.rs:41:30
+   |
+41 |           self.next.take().map(|frame| {
+   |  ______________________________^
+42 | |             self.next = frame.next.as_mut().map(|frame| &mut **frame);
+43 | |             &mut frame.elem
+44 | |         })
+   | |_________^
+
+error: [Prusti: unsupported feature] unsuported creation of unique borrows (implicitly created in closure bindings)
+  --> panic_files/stack_sol2/stack_sol2.rs:66:30
+   |
+66 |           self.head.take().map(|frame| { 
+   |  ______________________________^
+67 | |             let frame = *frame;
+68 | |             self.head = frame.next;
+69 | |             frame.elem
+70 | |         })
+   | |_________^
+
+error: [Prusti internal error] tried to encode a projection that accesses the field 0of a variant without first downcasting its enumeration std::option::Option<&std::boxed::Box<Frame<T>>>
+  --> panic_files/stack_sol2/stack_sol2.rs:74:5
+   |
+74 | /     pub fn peek(&self) -> Option<&T> {
+75 | |         self.head.as_ref().map(|frame| &frame.elem)
+76 | |     }
+   | |_____^
+
+error: [Prusti internal error] tried to encode a projection that accesses the field 0of a variant without first downcasting its enumeration std::option::Option<&mut std::boxed::Box<Frame<T>>>
+  --> panic_files/stack_sol2/stack_sol2.rs:79:5
+   |
+79 | /     pub fn peek_mut(&mut self) -> Option<&mut T> {
+80 | |         self.head.as_mut().map(|frame| &mut frame.elem)
+81 | |     }
+   | |_____^
+
+error: [Prusti internal error] tried to encode a projection that accesses the field 0of a variant without first downcasting its enumeration std::option::Option<&std::boxed::Box<Frame<T>>>
+  --> panic_files/stack_sol2/stack_sol2.rs:89:5
+   |
+89 | /     pub fn iter<'a>(&'a self) -> Iter<'a,T> {
+90 | |         Iter { next: self.head.as_ref().map(|frame| &**frame) }
+91 | |     }
+   | |_____^
+
+error: [Prusti internal error] tried to encode a projection that accesses the field 0of a variant without first downcasting its enumeration std::option::Option<&mut std::boxed::Box<Frame<T>>>
+  --> panic_files/stack_sol2/stack_sol2.rs:94:5
+   |
+94 | /     pub fn iter_mut(&mut self) -> IterMut<T> {
+95 | |         IterMut { next: self.head.as_mut().map(|frame| &mut **frame) }
+96 | |     }
+   | |_____^
+
+error: [Prusti: unsupported feature] determining the region of a dereferentiation is not supported
+  --> panic_files/stack_sol2/stack_sol2.rs:28:13
+   |
+28 |             self.next = frame.next.as_ref().map(|frame| &**frame);
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: [Prusti internal error] failed to obtain the type of the captured path #0 of closure [closure@panic_files/stack_sol2/stack_sol2.rs:28:49: 28:65]
+  --> panic_files/stack_sol2/stack_sol2.rs:28:65
+   |
+28 |             self.next = frame.next.as_ref().map(|frame| &**frame);
+   |                                                                 ^
+
+error: [Prusti: unsupported feature] determining the region of a dereferentiation is not supported
+  --> panic_files/stack_sol2/stack_sol2.rs:42:13
+   |
+42 |             self.next = frame.next.as_mut().map(|frame| &mut **frame);
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: [Prusti internal error] failed to obtain the type of the captured path #0 of closure [closure@panic_files/stack_sol2/stack_sol2.rs:42:49: 42:69]
+  --> panic_files/stack_sol2/stack_sol2.rs:42:69
+   |
+42 |             self.next = frame.next.as_mut().map(|frame| &mut **frame);
+   |                                                                     ^
+
+thread 'rustc' panicked at 'not implemented: ty=Closure(DefId(0:47 ~ stack_sol2[317d]::{impl#3}::pop::{closure#0}), [T, i32, extern "rust-call" fn((std::boxed::Box<Frame<T>>,)) -> T, (&mut &mut Stack<T>,)])', analysis/src/abstract_domains/place_utils.rs:81:17
+stack backtrace:
+   0: rust_begin_unwind
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/std/src/panicking.rs:493:5
+   1: core::panicking::panic_fmt
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/core/src/panicking.rs:92:14
+   2: analysis::abstract_domains::place_utils::expand_one_level
+   3: analysis::abstract_domains::place_utils::expand
+   4: analysis::abstract_domains::definitely_initialized::DefinitelyInitializedState::set_place_uninitialised
+   5: <analysis::abstract_domains::definitely_initialized::DefinitelyInitializedState as analysis::abstract_state::AbstractState>::apply_terminator_effect
+   6: analysis::analyzer::Analyzer::run_fwd_analysis
+   7: prusti_interface::environment::mir_analyses::initialization::compute_definitely_initialized
+   8: prusti_viper::encoder::initialisation::InitInfo::new
+   9: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::new
+  10: prusti_viper::encoder::encoder::Encoder::encode_procedure
+  11: prusti_viper::encoder::encoder::Encoder::process_encoding_queue
+  12: prusti_viper::verifier::Verifier::verify
+  13: prusti_driver::verifier::verify
+  14: <prusti_driver::callbacks::PrustiCompilerCalls as rustc_driver::Callbacks>::after_analysis
+  15: rustc_interface::queries::<impl rustc_interface::interface::Compiler>::enter
+  16: rustc_span::with_source_map
+  17: rustc_interface::interface::create_compiler_and_run
+  18: scoped_tls::ScopedKey<T>::set
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+
+error: internal compiler error: unexpected panic
+
+note: Prusti or the compiler unexpectedly panicked. This is a bug.
+
+note: We would appreciate a bug report: https://github.com/viperproject/prusti-dev/issues/new
+
+note: Prusti version: commit e8a9345e 2021-05-19 12:46:05 UTC, built on 2021-05-27 13:44:30 UTC
+
+query stack during panic:
+end of query stack
+error: aborting due to 11 previous errors
+

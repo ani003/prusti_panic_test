@@ -1,0 +1,88 @@
+  __          __        __  ___             
+ |__)  _\/_  |__) |  | /__`  |   ____\/_  | 
+ |      /\   |  \ \__/ .__/  |       /\   | 
+
+
+Verification of 8 items...
+error: [Prusti internal error] tried to encode a projection that accesses the field 0of a variant without first downcasting its enumeration std::result::Result<std::fs::File, std::io::Error>
+  --> panic_files/jaro_winkler_dist/jaro_winkler_dist.rs:4:1
+   |
+4  | / fn load_dictionary(filename: &str) -> std::io::Result<Vec<String>> {
+5  | |     let file = File::open(filename)?;
+6  | |     let mut dict = Vec::new();
+7  | |     for line in io::BufReader::new(file).lines() {
+...  |
+10 | |     Ok(dict)
+11 | | }
+   | |_^
+
+error: [Prusti: unsupported feature] unsupported type Float(F64)
+  --> panic_files/jaro_winkler_dist/jaro_winkler_dist.rs:13:1
+   |
+13 | / fn jaro_winkler_distance(string1: &str, string2: &str) -> f64 {
+14 | |     let mut st1 = string1;
+15 | |     let mut st2 = string2;
+16 | |     let mut len1 = st1.chars().count();
+...  |
+56 | |     1.0 - (jaro + commonprefix as f64 * 0.1 * (1.0 - jaro))
+57 | | }
+   | |_^
+
+error: [Prusti: unsupported feature] unsupported type Float(F64)
+  --> panic_files/jaro_winkler_dist/jaro_winkler_dist.rs:59:1
+   |
+59 | / fn within_distance<'a>(
+60 | |     dict: &'a Vec<String>,
+61 | |     max_distance: f64,
+62 | |     stri: &str,
+...  |
+84 | |     arr[0..std::cmp::min(max_to_return, arr.len())].to_vec()
+85 | | }
+   | |_^
+
+error: [Prusti: unsupported feature] cast statements that create loans are not supported
+   --> panic_files/jaro_winkler_dist/jaro_winkler_dist.rs:109:33
+    |
+109 |         Err(error) => eprintln!("{}", error),
+    |                                 ^^^^
+
+error: [Prusti: unsupported feature] unsupported type Float(F64)
+  --> panic_files/jaro_winkler_dist/jaro_winkler_dist.rs:67:14
+   |
+67 |         .map(|w| (w, jaro_winkler_distance(stri, w)))
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+thread 'rustc' panicked at 'not implemented: Float(F64)', prusti-viper/src/encoder/procedure_encoder.rs:5294:22
+stack backtrace:
+   0: rust_begin_unwind
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/std/src/panicking.rs:493:5
+   1: core::panicking::panic_fmt
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/core/src/panicking.rs:92:14
+   2: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_assign_operand
+   3: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_statement
+   4: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_statement_at
+   5: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_blocks_group
+   6: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode
+   7: prusti_viper::encoder::encoder::Encoder::encode_procedure
+   8: prusti_viper::encoder::encoder::Encoder::process_encoding_queue
+   9: prusti_viper::verifier::Verifier::verify
+  10: prusti_driver::verifier::verify
+  11: <prusti_driver::callbacks::PrustiCompilerCalls as rustc_driver::Callbacks>::after_analysis
+  12: rustc_interface::queries::<impl rustc_interface::interface::Compiler>::enter
+  13: rustc_span::with_source_map
+  14: rustc_interface::interface::create_compiler_and_run
+  15: scoped_tls::ScopedKey<T>::set
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+
+error: internal compiler error: unexpected panic
+
+note: Prusti or the compiler unexpectedly panicked. This is a bug.
+
+note: We would appreciate a bug report: https://github.com/viperproject/prusti-dev/issues/new
+
+note: Prusti version: commit e8a9345e 2021-05-19 12:46:05 UTC, built on 2021-05-27 13:44:30 UTC
+
+query stack during panic:
+end of query stack
+error: aborting due to 5 previous errors
+

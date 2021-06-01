@@ -1,0 +1,42 @@
+  __          __        __  ___             
+ |__)  _\/_  |__) |  | /__`  |   ____\/_  | 
+ |      /\   |  \ \__/ .__/  |       /\   | 
+
+
+Verification of 3 items...
+thread 'rustc' panicked at 'Type [closure@panic_files/strip_comments_from_string/strip_comments_from_string.rs:4:14: 4:33] can not be dereferenced', prusti-viper/src/encoder/mir_encoder/mod.rs:249:9
+stack backtrace:
+   0: rust_begin_unwind
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/std/src/panicking.rs:493:5
+   1: std::panicking::begin_panic_fmt
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/std/src/panicking.rs:435:5
+   2: prusti_viper::encoder::mir_encoder::PlaceEncoder::encode_deref
+   3: prusti_viper::encoder::mir_encoder::PlaceEncoder::encode_projection
+   4: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_generic_place
+   5: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_postcondition_expr
+   6: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_impure_function_call
+   7: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_terminator
+   8: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_statement_at
+   9: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_blocks_group
+  10: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode
+  11: prusti_viper::encoder::encoder::Encoder::encode_procedure
+  12: prusti_viper::encoder::encoder::Encoder::process_encoding_queue
+  13: prusti_viper::verifier::Verifier::verify
+  14: prusti_driver::verifier::verify
+  15: <prusti_driver::callbacks::PrustiCompilerCalls as rustc_driver::Callbacks>::after_analysis
+  16: rustc_interface::queries::<impl rustc_interface::interface::Compiler>::enter
+  17: rustc_span::with_source_map
+  18: rustc_interface::interface::create_compiler_and_run
+  19: scoped_tls::ScopedKey<T>::set
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+
+error: internal compiler error: unexpected panic
+
+note: Prusti or the compiler unexpectedly panicked. This is a bug.
+
+note: We would appreciate a bug report: https://github.com/viperproject/prusti-dev/issues/new
+
+note: Prusti version: commit e8a9345e 2021-05-19 12:46:05 UTC, built on 2021-05-27 13:44:30 UTC
+
+query stack during panic:
+end of query stack

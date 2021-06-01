@@ -1,0 +1,59 @@
+  __          __        __  ___             
+ |__)  _\/_  |__) |  | /__`  |   ____\/_  | 
+ |      /\   |  \ \__/ .__/  |       /\   | 
+
+
+warning: use of deprecated macro `try`: use the `?` operator instead
+  --> panic_files/file_io_sol2/file_io_sol2.rs:19:8
+   |
+19 |     Ok(try!(File::open(infile)
+   |        ^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+Verification of 7 items...
+error: [Prusti: unsupported feature] unsupported constant value: Value(Slice { data: Allocation { bytes: [66, 111, 116, 104, 32, 97, 110, 32, 105, 110, 112, 117, 116, 32, 102, 105, 108, 101, 32, 97, 110, 100, 32, 111, 117, 116, 112, 117, 116, 32, 102, 105, 108, 101, 32, 97, 114, 101, 32, 114, 101, 113, 117, 105, 114, 101, 100], relocations: Relocations(SortedMap { data: [] }), init_mask: InitMask { blocks: [140737488355327], len: Size { raw: 47 } }, size: Size { raw: 47 }, align: Align { pow2: 0 }, mutability: Not, extra: () }, start: 0, end: 47 })
+  --> panic_files/file_io_sol2/file_io_sol2.rs:10:9
+   |
+10 |         exit_err("Both an input file and output file are required", 1);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+thread 'rustc' panicked at 'Type &mut std::vec::Vec<u8> has no fields', prusti-viper/src/encoder/mir_encoder/mod.rs:103:25
+stack backtrace:
+   0: rust_begin_unwind
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/std/src/panicking.rs:493:5
+   1: std::panicking::begin_panic_fmt
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/std/src/panicking.rs:435:5
+   2: prusti_viper::encoder::mir_encoder::PlaceEncoder::encode_projection
+   3: prusti_viper::encoder::mir_encoder::PlaceEncoder::encode_projection
+   4: prusti_viper::encoder::mir_encoder::PlaceEncoder::encode_projection
+   5: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_generic_place
+   6: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_postcondition_expr
+   7: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_impure_function_call
+   8: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_terminator
+   9: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_statement_at
+  10: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_blocks_group
+  11: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode
+  12: prusti_viper::encoder::encoder::Encoder::encode_procedure
+  13: prusti_viper::encoder::encoder::Encoder::process_encoding_queue
+  14: prusti_viper::verifier::Verifier::verify
+  15: prusti_driver::verifier::verify
+  16: <prusti_driver::callbacks::PrustiCompilerCalls as rustc_driver::Callbacks>::after_analysis
+  17: rustc_interface::queries::<impl rustc_interface::interface::Compiler>::enter
+  18: rustc_span::with_source_map
+  19: rustc_interface::interface::create_compiler_and_run
+  20: scoped_tls::ScopedKey<T>::set
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+
+error: internal compiler error: unexpected panic
+
+note: Prusti or the compiler unexpectedly panicked. This is a bug.
+
+note: We would appreciate a bug report: https://github.com/viperproject/prusti-dev/issues/new
+
+note: Prusti version: commit e8a9345e 2021-05-19 12:46:05 UTC, built on 2021-05-27 13:44:30 UTC
+
+query stack during panic:
+end of query stack
+error: aborting due to previous error; 1 warning emitted
+

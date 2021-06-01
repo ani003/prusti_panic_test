@@ -1,0 +1,138 @@
+  __          __        __  ___             
+ |__)  _\/_  |__) |  | /__`  |   ____\/_  | 
+ |      /\   |  \ \__/ .__/  |       /\   | 
+
+
+Verification of 19 items...
+error: [Prusti: unsupported feature] cast statements that create loans are not supported
+  --> panic_files/angles_norm_conv/angles_norm_conv.rs:54:14
+   |
+54 |     println!("{:<12} {:<12} {:<12} {:<12} {:<12} {:<12}", "Angle", "Unit...
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: [Prusti: unsupported feature] unsupported type Float(F64)
+  --> panic_files/angles_norm_conv/angles_norm_conv.rs:31:5
+   |
+31 | /     pub fn new(val: f64) -> Self {
+32 | |         Self(val, PhantomData)
+33 | |     }
+   | |_____^
+
+error: [Prusti: unsupported feature] unsupported type Float(F64)
+  --> panic_files/angles_norm_conv/angles_norm_conv.rs:35:5
+   |
+35 | /     pub fn normalize(self) -> Self {
+36 | |         Self(self.0 % T::TURN, PhantomData)
+37 | |     }
+   | |_____^
+
+error: [Prusti: unsupported feature] unsupported type Float(F64)
+  --> panic_files/angles_norm_conv/angles_norm_conv.rs:39:5
+   |
+39 | /     pub fn val(self) -> f64 {
+40 | |         self.0
+41 | |     }
+   | |_____^
+
+error: [Prusti: unsupported feature] unsupported type Float(F64)
+  --> panic_files/angles_norm_conv/angles_norm_conv.rs:43:5
+   |
+43 | /     pub fn convert<U: AngleUnit>(self) -> Angle<U> {
+44 | |         Angle::new(self.0 * U::TURN / T::TURN)
+45 | |     }
+   | |_____^
+
+error: [Prusti: unsupported feature] unsupported type Float(F64)
+  --> panic_files/angles_norm_conv/angles_norm_conv.rs:47:5
+   |
+47 | /     pub fn name(self) -> &'static str {
+48 | |         T::NAME
+49 | |     }
+   | |_____^
+
+error: [Prusti: unsupported feature] the encoding of this reference copy has not been implemented
+  --> panic_files/angles_norm_conv/angles_norm_conv.rs:13:18
+   |
+13 |         #[derive(Debug, Copy, Clone)]
+   |                  ^^^^^
+...
+22 | unit!(Degrees,  360.0,      "Degrees");
+   | --------------------------------------- in this macro invocation
+   |
+   = note: this error originates in a derive macro (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: [Prusti: unsupported feature] the encoding of this reference copy has not been implemented
+  --> panic_files/angles_norm_conv/angles_norm_conv.rs:13:18
+   |
+13 |         #[derive(Debug, Copy, Clone)]
+   |                  ^^^^^
+...
+23 | unit!(Radians,  PI * 2.0,   "Radians");
+   | --------------------------------------- in this macro invocation
+   |
+   = note: this error originates in a derive macro (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: [Prusti: unsupported feature] the encoding of this reference copy has not been implemented
+  --> panic_files/angles_norm_conv/angles_norm_conv.rs:13:18
+   |
+13 |         #[derive(Debug, Copy, Clone)]
+   |                  ^^^^^
+...
+24 | unit!(Gradians, 400.0,      "Gradians");
+   | ---------------------------------------- in this macro invocation
+   |
+   = note: this error originates in a derive macro (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: [Prusti: unsupported feature] the encoding of this reference copy has not been implemented
+  --> panic_files/angles_norm_conv/angles_norm_conv.rs:13:18
+   |
+13 |         #[derive(Debug, Copy, Clone)]
+   |                  ^^^^^
+...
+25 | unit!(Mils,     6400.0,     "Mils");
+   | ------------------------------------ in this macro invocation
+   |
+   = note: this error originates in a derive macro (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: [Prusti: unsupported feature] unsupported type Float(F64)
+  --> panic_files/angles_norm_conv/angles_norm_conv.rs:27:16
+   |
+27 | #[derive(Copy, Clone, PartialEq, PartialOrd)]
+   |                ^^^^^
+   |
+   = note: this error originates in a derive macro (in Nightly builds, run with -Z macro-backtrace for more info)
+
+thread 'rustc' panicked at 'not implemented: Float(F64)', prusti-viper/src/encoder/procedure_encoder.rs:5294:22
+stack backtrace:
+   0: rust_begin_unwind
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/std/src/panicking.rs:493:5
+   1: core::panicking::panic_fmt
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/core/src/panicking.rs:92:14
+   2: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_assign_operand
+   3: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_statement
+   4: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_statement_at
+   5: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_blocks_group
+   6: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode
+   7: prusti_viper::encoder::encoder::Encoder::encode_procedure
+   8: prusti_viper::encoder::encoder::Encoder::process_encoding_queue
+   9: prusti_viper::verifier::Verifier::verify
+  10: prusti_driver::verifier::verify
+  11: <prusti_driver::callbacks::PrustiCompilerCalls as rustc_driver::Callbacks>::after_analysis
+  12: rustc_interface::queries::<impl rustc_interface::interface::Compiler>::enter
+  13: rustc_span::with_source_map
+  14: rustc_interface::interface::create_compiler_and_run
+  15: scoped_tls::ScopedKey<T>::set
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+
+error: internal compiler error: unexpected panic
+
+note: Prusti or the compiler unexpectedly panicked. This is a bug.
+
+note: We would appreciate a bug report: https://github.com/viperproject/prusti-dev/issues/new
+
+note: Prusti version: commit e8a9345e 2021-05-19 12:46:05 UTC, built on 2021-05-27 13:44:30 UTC
+
+query stack during panic:
+end of query stack
+error: aborting due to 11 previous errors
+

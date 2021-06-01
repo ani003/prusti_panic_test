@@ -1,0 +1,51 @@
+  __          __        __  ___             
+ |__)  _\/_  |__) |  | /__`  |   ____\/_  | 
+ |      /\   |  \ \__/ .__/  |       /\   | 
+
+
+Verification of 3 items...
+error: [Prusti: unsupported feature] cast statements that create loans are not supported
+ --> panic_files/longest_common_prefix/longest_common_prefix.rs:8:9
+  |
+8 |         &[b"prefix", b"suffix"],
+  |         ^^^^^^^^^^^^^^^^^^^^^^^
+
+thread 'rustc' panicked at 'not implemented: NonMutatingUse(ShallowBorrow)', prusti-interface/src/environment/loops.rs:117:22
+stack backtrace:
+   0: rust_begin_unwind
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/std/src/panicking.rs:493:5
+   1: core::panicking::panic_fmt
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/core/src/panicking.rs:92:14
+   2: <prusti_interface::environment::loops::AccessCollector as rustc_middle::mir::visit::Visitor>::visit_place
+   3: prusti_interface::environment::loops::ProcedureLoops::compute_read_and_write_leaves
+   4: prusti_viper::encoder::loop_encoder::LoopEncoder::compute_loop_invariant
+   5: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_loop_invariant_permissions
+   6: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_loop_invariant_exhale_stmts
+   7: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_loop
+   8: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_blocks_group
+   9: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_loop
+  10: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_blocks_group
+  11: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode
+  12: prusti_viper::encoder::encoder::Encoder::encode_procedure
+  13: prusti_viper::encoder::encoder::Encoder::process_encoding_queue
+  14: prusti_viper::verifier::Verifier::verify
+  15: prusti_driver::verifier::verify
+  16: <prusti_driver::callbacks::PrustiCompilerCalls as rustc_driver::Callbacks>::after_analysis
+  17: rustc_interface::queries::<impl rustc_interface::interface::Compiler>::enter
+  18: rustc_span::with_source_map
+  19: rustc_interface::interface::create_compiler_and_run
+  20: scoped_tls::ScopedKey<T>::set
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+
+error: internal compiler error: unexpected panic
+
+note: Prusti or the compiler unexpectedly panicked. This is a bug.
+
+note: We would appreciate a bug report: https://github.com/viperproject/prusti-dev/issues/new
+
+note: Prusti version: commit e8a9345e 2021-05-19 12:46:05 UTC, built on 2021-05-27 13:44:30 UTC
+
+query stack during panic:
+end of query stack
+error: aborting due to previous error
+

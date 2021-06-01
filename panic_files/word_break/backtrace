@@ -1,0 +1,78 @@
+  __          __        __  ___             
+ |__)  _\/_  |__) |  | /__`  |   ____\/_  | 
+ |      /\   |  \ \__/ .__/  |       /\   | 
+
+
+Verification of 7 items...
+error: [Prusti: unsupported feature] the encoding of this reference copy has not been implemented
+  --> panic_files/word_break/word_break.rs:10:20
+   |
+10 |     slice_vec.join(" ")
+   |                    ^^^
+
+error: [Prusti internal error] generating fold-unfold Viper statements failed (FailedToObtain(Pred(Local(_old$l44$0: Ref(m_Option$_beg_$usize$_end_), Position { line: 0, column: 0, id: 0 }), read)))
+  --> panic_files/word_break/word_break.rs:15:1
+   |
+15 | / fn word_break(s: &str, dict: HashSet<&str>) -> Option<String> {
+16 | |     let size = s.len() + 1;
+17 | |     let mut possible = vec![None; size];
+18 | |  
+...  |
+35 | |     None
+36 | | }
+   | |_^
+
+error: [Prusti: unsupported feature] cast statements that create loans are not supported
+  --> panic_files/word_break/word_break.rs:45:14
+   |
+45 |     println!("{:?}", word_break("abcd", set).unwrap());
+   |              ^^^^^^
+
+error: [Prusti internal error] tried to encode a projection that accesses the field 0of a variant without first downcasting its enumeration std::option::Option<&&str>
+  --> panic_files/word_break/word_break.rs:19:22
+   |
+19 |     let check_word = |i,j| dict.get(&s[i..j]).map(|_| i);
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: [Prusti internal error] generating fold-unfold Viper statements failed (FailedToObtain(Acc(Field(Field(Local(_1: Ref(closure$0_9$3$801199921477614162), Position { line: 0, column: 0, id: 0 }), closure_0: Ref(ref$usize), Position { line: 0, column: 0, id: 0 }), val_ref: Ref(usize), Position { line: 0, column: 0, id: 0 }), read)))
+  --> panic_files/word_break/word_break.rs:19:51
+   |
+19 |     let check_word = |i,j| dict.get(&s[i..j]).map(|_| i);
+   |                                                   ^^^^^
+
+thread 'rustc' panicked at 'called `Option::unwrap()` on a `None` value', prusti-viper/src/encoder/procedure_encoder.rs:2353:57
+stack backtrace:
+   0: rust_begin_unwind
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/std/src/panicking.rs:493:5
+   1: core::panicking::panic_fmt
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/core/src/panicking.rs:92:14
+   2: core::panicking::panic
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/core/src/panicking.rs:50:5
+   3: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_impure_function_call
+   4: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_terminator
+   5: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_statement_at
+   6: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_blocks_group
+   7: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode
+   8: prusti_viper::encoder::encoder::Encoder::encode_procedure
+   9: prusti_viper::encoder::encoder::Encoder::process_encoding_queue
+  10: prusti_viper::verifier::Verifier::verify
+  11: prusti_driver::verifier::verify
+  12: <prusti_driver::callbacks::PrustiCompilerCalls as rustc_driver::Callbacks>::after_analysis
+  13: rustc_interface::queries::<impl rustc_interface::interface::Compiler>::enter
+  14: rustc_span::with_source_map
+  15: rustc_interface::interface::create_compiler_and_run
+  16: scoped_tls::ScopedKey<T>::set
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+
+error: internal compiler error: unexpected panic
+
+note: Prusti or the compiler unexpectedly panicked. This is a bug.
+
+note: We would appreciate a bug report: https://github.com/viperproject/prusti-dev/issues/new
+
+note: Prusti version: commit e8a9345e 2021-05-19 12:46:05 UTC, built on 2021-05-27 13:44:30 UTC
+
+query stack during panic:
+end of query stack
+error: aborting due to 5 previous errors
+

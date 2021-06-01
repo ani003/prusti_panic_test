@@ -1,0 +1,54 @@
+  __          __        __  ___             
+ |__)  _\/_  |__) |  | /__`  |   ____\/_  | 
+ |      /\   |  \ \__/ .__/  |       /\   | 
+
+
+warning: function is never used: `write_pile`
+  --> panic_files/abelian_sandphile_model/abelian_sandphile_model.rs:69:4
+   |
+69 | fn write_pile(pile: &Vec<Vec<usize>>) {
+   |    ^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` on by default
+
+Verification of 5 items...
+thread 'rustc' panicked at 'not implemented: elem = Index(_96)', prusti-interface/src/utils.rs:117:13
+stack backtrace:
+   0: rust_begin_unwind
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/std/src/panicking.rs:493:5
+   1: core::panicking::panic_fmt
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/core/src/panicking.rs:92:14
+   2: prusti_interface::utils::expand_one_level
+   3: prusti_interface::utils::VecPlace::new
+   4: prusti_interface::environment::loops_utils::PermissionTree::new
+   5: prusti_interface::environment::loops_utils::PermissionForest::new::add_paths
+   6: prusti_interface::environment::loops_utils::PermissionForest::new
+   7: prusti_viper::encoder::loop_encoder::LoopEncoder::compute_loop_invariant
+   8: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_loop_invariant_permissions
+   9: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_loop_invariant_exhale_stmts
+  10: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_loop
+  11: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_blocks_group
+  12: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode
+  13: prusti_viper::encoder::encoder::Encoder::encode_procedure
+  14: prusti_viper::encoder::encoder::Encoder::process_encoding_queue
+  15: prusti_viper::verifier::Verifier::verify
+  16: prusti_driver::verifier::verify
+  17: <prusti_driver::callbacks::PrustiCompilerCalls as rustc_driver::Callbacks>::after_analysis
+  18: rustc_interface::queries::<impl rustc_interface::interface::Compiler>::enter
+  19: rustc_span::with_source_map
+  20: rustc_interface::interface::create_compiler_and_run
+  21: scoped_tls::ScopedKey<T>::set
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+
+error: internal compiler error: unexpected panic
+
+note: Prusti or the compiler unexpectedly panicked. This is a bug.
+
+note: We would appreciate a bug report: https://github.com/viperproject/prusti-dev/issues/new
+
+note: Prusti version: commit e8a9345e 2021-05-19 12:46:05 UTC, built on 2021-05-27 13:44:30 UTC
+
+query stack during panic:
+end of query stack
+warning: 1 warning emitted
+

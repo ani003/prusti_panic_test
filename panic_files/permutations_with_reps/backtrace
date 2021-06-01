@@ -1,0 +1,53 @@
+  __          __        __  ___             
+ |__)  _\/_  |__) |  | /__`  |   ____\/_  | 
+ |      /\   |  \ \__/ .__/  |       /\   | 
+
+
+Verification of 6 items...
+error: [Prusti: unsupported feature] the encoding of pledges does not supporte this kind of reborrowing
+  --> panic_files/permutations_with_reps/permutations_with_reps.rs:13:2
+   |
+13 | }
+   |  ^
+
+thread 'rustc' panicked at 'key error: __TYPARAM__$T$__', prusti-common/src/vir/ast/typaram.rs:95:79
+stack backtrace:
+   0: rust_begin_unwind
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/std/src/panicking.rs:493:5
+   1: std::panicking::begin_panic_fmt
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/std/src/panicking.rs:435:5
+   2: prusti_common::vir::ast::typaram::Substs::apply::{{closure}}
+   3: prusti_common::vir::ast::typaram::Substs::apply
+   4: <prusti_common::vir::ast::expr::Expr::replace_place::PlaceReplacer as prusti_common::vir::ast::expr_transformers::ExprFolder>::fold
+   5: prusti_common::vir::ast::expr_transformers::ExprFolder::fold_field
+   6: prusti_common::vir::ast::expr_transformers::default_fold_expr
+   7: <prusti_common::vir::ast::expr::Expr::replace_place::PlaceReplacer as prusti_common::vir::ast::expr_transformers::ExprFolder>::fold
+   8: prusti_common::vir::ast::expr::Expr::replace_place
+   9: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_impure_function_call
+  10: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_terminator
+  11: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_statement_at
+  12: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_blocks_group
+  13: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode
+  14: prusti_viper::encoder::encoder::Encoder::encode_procedure
+  15: prusti_viper::encoder::encoder::Encoder::process_encoding_queue
+  16: prusti_viper::verifier::Verifier::verify
+  17: prusti_driver::verifier::verify
+  18: <prusti_driver::callbacks::PrustiCompilerCalls as rustc_driver::Callbacks>::after_analysis
+  19: rustc_interface::queries::<impl rustc_interface::interface::Compiler>::enter
+  20: rustc_span::with_source_map
+  21: rustc_interface::interface::create_compiler_and_run
+  22: scoped_tls::ScopedKey<T>::set
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+
+error: internal compiler error: unexpected panic
+
+note: Prusti or the compiler unexpectedly panicked. This is a bug.
+
+note: We would appreciate a bug report: https://github.com/viperproject/prusti-dev/issues/new
+
+note: Prusti version: commit e8a9345e 2021-05-19 12:46:05 UTC, built on 2021-05-27 13:44:30 UTC
+
+query stack during panic:
+end of query stack
+error: aborting due to previous error
+

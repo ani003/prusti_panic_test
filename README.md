@@ -1,8 +1,13 @@
 # prusti_panic_test
 Repo of Rosetta codes which cause Prusti to panic
 
+## panic_files
+`panic_files` directory contains all the [Rosetta codes](https://www.rosettacode.org/wiki/Rosetta_Code) which panicked when running [`prusti-rustc`](https://github.com/viperproject/prusti-dev) on them. Along with the code files, the backtrace produced by executing `prusti-rustc` with `RUST_BACKTRACE=1` is also present in the corresponding `backtrace` files.
+
+This folder was produced using the bash script `run.sh`.
+
 ## run.sh
-`run.sh` is used to check which programs panic. It takes one argument which is the directory `dir` to be processed. If nothing is passed, `dir` defaults to `.`. The structure of `dir` depends on which flag is passed. 
+`run.sh` is used to check which Rust programs panic. It takes one argument which is the directory `dir` to be processed. If nothing is passed, `dir` defaults to `.`. The structure of `dir` depends on which flag is passed. 
 
 ### Flags
 * `-f` or `--files` (Default):

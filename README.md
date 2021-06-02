@@ -25,3 +25,9 @@ To execute `run.sh`, first update the second line of the script with the correct
 $ ./run.sh -f dir
 $ ./run.sh -d dir
 ```
+
+## panic_sources.sh
+`panic_sources.sh` is run on the output (`panic_files`) of `run.sh`. It identifies all the unique sources of panic and the programs which have panicked at that place. It outputs a markdown file `panic_sources.md` of this information with a checkbox against every panic source. To run it, type the following command.
+```
+$ ./panic_sources.sh panic_files
+```

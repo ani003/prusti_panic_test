@@ -1,0 +1,163 @@
+# Panic sources
+
+- [ ] 1. `prusti-interface/src/utils.rs:117:13` :
+  - the_isaac_cipher
+  - sorting_shell_sort
+  - sorting_selection_sort
+  - crc32
+  - abelian_sandphile_model
+  - abc
+  - 100doors_sol1
+- [ ] 2. `prusti-viper/src/utils/type_visitor.rs:286:19` :
+  - zumkeller_nums
+  - y_combinator
+  - sum_of_first_n_cubes
+  - sudoku
+  - strip_set_of_chars_from_string_sol2
+  - sorting_radix_sort
+  - sorting_quick_sort_sol2
+  - sorting_pancake_sort
+  - sort_disjoint_sublist
+  - ray_casting
+  - range_consolidation
+  - pythagorean_quads
+  - pangram_checker
+  - optional_params
+  - nqueens_sol2
+  - floyd_warshall
+  - egyptian_division
+  - determine_string_unique_chars
+  - convex_hull
+  - carmichael_pseudoprime
+  - anti_primes
+  - anagrams_deranged
+  - amicable_pairs
+  - abbr_easy
+  - 100doors_sol2
+- [ ] 3. `prusti-viper/src/encoder/procedure_encoder.rs:5294:22` :
+  - sutherland_hodgman_clip
+  - search_list_of_records
+  - rref
+  - p_val_correction
+  - kronecker_product
+  - jaro_winkler_dist
+  - gauss_jordan_matrix_inv
+  - fib_seq_sol5_analytic
+  - angles_norm_conv
+  - 24game_solve
+- [ ] 4. `prusti-viper/src/encoder/procedure_encoder.rs:1247:25` :
+  - utf8_encode_decode
+  - ulam_nums
+  - sieve_of_erot_sol5
+  - sieve_of_erot_sol3
+  - permutations_sol1_iter
+  - order_two_num_lists
+  - man_or_boy_test_sol3
+  - ludic_nums
+  - loops_foreach_sol3
+  - hofstadter_conway
+  - func_composition_sol1_stable
+  - factors_of_int_sol2
+  - factors_of_int_sol1
+  - dining_philosophers
+  - count_in_factors
+  - conway_game_of_life
+  - church_numerals
+  - cheryl_birthday
+  - cartesian_product_of_lists
+  - call_a_function
+  - brace_expansion
+  - balanced_ternary
+  - abundant_odd_nums
+  - 4rings
+- [ ] 5. `/rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/std/src/panic.rs:59:5` :
+  - truth_table
+  - repeat_sol4_trait
+  - ascii_art_diag_conv
+- [ ] 6. `prusti-viper/src/encoder/mir_encoder/mod.rs:103:25` :
+  - solve_hidato
+  - file_io_sol2
+  - bin_given_limits
+- [ ] 7. `prusti-common/src/vir/ast/typaram.rs:95:79` :
+  - permutations_with_reps
+  - bitwise_io
+- [ ] 8. `prusti-viper/src/encoder/mir_encoder/mod.rs:249:9` :
+  - substring_top_tail_sol2
+  - strip_comments_from_string
+  - extract_file_extension
+  - canonicalize_CIDR
+- [ ] 9. `prusti-interface/src/environment/borrowck/regions.rs:87:22` :
+  - find_missing_perm
+  - execute_brain
+  - catalan_numbers_pascal_triangle
+- [ ] 10. `analysis/src/abstract_domains/place_utils.rs:81:17` :
+  - synchronous_concurrency
+  - stack_sol2
+  - padovan_seq
+  - hello_world_web_server
+  - echo_server
+  - chat_server
+  - chaocipher
+- [ ] 11. `prusti-viper/src/encoder/encoder.rs:1109:22` :
+  - first_power_of_two
+  - element_wise_ops
+  - dice_game_probs
+  - determinant_and_permanent
+  - cramers_rule
+  - cholesky_decomposition
+- [ ] 12. `prusti-viper/src/encoder/type_encoder.rs:192:22` :
+  - vigenere_cipher_cryptanalysis
+  - real_consts_and_funcs
+  - documentation
+- [ ] 13. `/rustc/79e50bf77928f374921a6bcafee3fcff1915f062/compiler/rustc_span/src/def_id.rs:264:43` :
+  - word_wrap
+  - run_len_encoding
+  - inverted_index
+  - find_intersection_line_plane
+- [ ] 14. `prusti-viper/src/encoder/encoder.rs:560:14` :
+  - spelling_ordinal_nums
+  - queue_defn_sol2
+  - main_step_of_gost
+  - four_is_the_num_of_letters
+- [ ] 15. `prusti-viper/src/encoder/type_encoder.rs:135:22` :
+  - matrix_trans_sol1
+  - matrix_mult
+  - knights_tour
+- [ ] 16. `prusti-viper/src/encoder/procedure_encoder.rs:1568:9` :
+  - water_collected_btw_towers
+  - topological_sort
+  - rep_string
+  - power_set
+  - last_letter_first_letter
+- [ ] 17. `prusti-interface/src/environment/loops.rs:117:22` :
+  - longest_common_prefix
+- [ ] 18. `prusti-viper/src/encoder/procedure_encoder.rs:5001:98` :
+  - two_sum
+  - tree_traversal
+  - thiele_interpolation
+  - sorting_quick_sort_sol1
+  - sorting_insertion_sort
+  - sorting_heap_sort_sol1
+  - sorting_gnome_sort
+  - sorting_comb_sort
+  - sorting_cocktail_sort_shifting_bounds
+  - sorting_cocktail_sort
+  - sorting_circle_sort
+  - sorting_bubble_sort
+  - range_extraction
+  - quickselect_algo
+  - practical_nums
+  - permutation_test
+  - next_highest_int_from_digits
+  - look_and_say_seq
+  - longest_common_subseq
+- [ ] 19. `prusti-viper/src/encoder/foldunfold/semantics.rs:86:21` :
+  - lzw_compression
+- [ ] 20. `prusti-viper/src/encoder/memory_eq_encoder.rs:250:23` :
+  - parse_ip
+- [ ] 21. `prusti-interface/src/utils.rs:81:17` :
+  - smarandache_prime_digital_seq
+- [ ] 22. `prusti-interface/src/environment/polonius_info.rs:1158:9` :
+  - undefined_values
+- [ ] 23. `prusti-viper/src/encoder/procedure_encoder.rs:2353:57` :
+  - word_break

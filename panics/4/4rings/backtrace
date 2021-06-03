@@ -1,0 +1,61 @@
+  __          __        __  ___             
+ |__)  _\/_  |__) |  | /__`  |   ____\/_  | 
+ |      /\   |  \ \__/ .__/  |       /\   | 
+
+
+warning: the feature `inclusive_range_syntax` has been stable since 1.26.0 and no longer requires an attribute to enable
+ --> panic_files/4rings/4rings.rs:1:12
+  |
+1 | #![feature(inclusive_range_syntax)]
+  |            ^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(stable_features)]` on by default
+
+Verification of 8 items...
+thread 'rustc' panicked at 'not implemented: encoding of 'move _143 as std::boxed::Box<[u8]> (Pointer(Unsize))'', prusti-viper/src/encoder/procedure_encoder.rs:1247:25
+stack backtrace:
+   0: rust_begin_unwind
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/std/src/panicking.rs:493:5
+   1: core::panicking::panic_fmt
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/core/src/panicking.rs:92:14
+   2: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_statement
+   3: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_statement_at
+   4: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_blocks_group
+   5: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_loop
+   6: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_blocks_group
+   7: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_loop
+   8: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_blocks_group
+   9: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_loop
+  10: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_blocks_group
+  11: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_loop
+  12: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_blocks_group
+  13: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_loop
+  14: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_blocks_group
+  15: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_loop
+  16: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_blocks_group
+  17: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_loop
+  18: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_blocks_group
+  19: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode
+  20: prusti_viper::encoder::encoder::Encoder::encode_procedure
+  21: prusti_viper::encoder::encoder::Encoder::process_encoding_queue
+  22: prusti_viper::verifier::Verifier::verify
+  23: prusti_driver::verifier::verify
+  24: <prusti_driver::callbacks::PrustiCompilerCalls as rustc_driver::Callbacks>::after_analysis
+  25: rustc_interface::queries::<impl rustc_interface::interface::Compiler>::enter
+  26: rustc_span::with_source_map
+  27: rustc_interface::interface::create_compiler_and_run
+  28: scoped_tls::ScopedKey<T>::set
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+
+error: internal compiler error: unexpected panic
+
+note: Prusti or the compiler unexpectedly panicked. This is a bug.
+
+note: We would appreciate a bug report: https://github.com/viperproject/prusti-dev/issues/new
+
+note: Prusti version: commit e8a9345e 2021-05-19 12:46:05 UTC, built on 2021-05-27 13:44:30 UTC
+
+query stack during panic:
+end of query stack
+warning: 1 warning emitted
+

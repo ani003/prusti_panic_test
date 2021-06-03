@@ -1,0 +1,82 @@
+  __          __        __  ___             
+ |__)  _\/_  |__) |  | /__`  |   ____\/_  | 
+ |      /\   |  \ \__/ .__/  |       /\   | 
+
+
+Verification of 11 items...
+error: [Prusti: unsupported feature] determining the region of a dereferentiation is not supported
+  --> panic_files/topological_sort/topological_sort.rs:27:35
+   |
+27 |                         children: vec![name],
+   |                                   ^^^^^^^^^^
+   |
+   = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: [Prusti: unsupported feature] determining the region of a dereferentiation is not supported
+  --> panic_files/topological_sort/topological_sort.rs:76:13
+   |
+76 |             child.num_parents -= 1;
+   |             ^^^^^^^^^^^^^^^^^^^^^^
+
+error: [Prusti: unsupported feature] determining the region of a dereferentiation is not supported
+   --> panic_files/topological_sort/topological_sort.rs:91:28
+    |
+91  |       let input: Vec<&str> = vec![
+    |  ____________________________^
+92  | |         "des_system_lib   std synopsys std_cell_lib des_system_lib dw...
+93  | |         "dw01             ieee dw01 dware gtech dw04\n",
+94  | |         "dw02             ieee dw02 dware\n",
+...   |
+104 | |         "synopsys\n",
+105 | |     ];
+    | |_____^
+    |
+    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: [Prusti: unsupported feature] cast statements that create loans are not supported
+ --> panic_files/topological_sort/topological_sort.rs:6:5
+  |
+6 |     name: &'a str,
+  |     ^^^^^^^^^^^^^
+  |
+  = note: this error originates in a derive macro (in Nightly builds, run with -Z macro-backtrace for more info)
+
+thread 'rustc' panicked at 'assertion failed: `(left == right)`
+  left: `0`,
+ right: `1`: We can have at most one magic wand in the postcondition.', prusti-viper/src/encoder/procedure_encoder.rs:1568:9
+stack backtrace:
+   0: rust_begin_unwind
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/std/src/panicking.rs:493:5
+   1: core::panicking::panic_fmt
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/core/src/panicking.rs:92:14
+   2: core::panicking::assert_failed_inner
+   3: core::panicking::assert_failed
+   4: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::construct_vir_reborrowing_dag
+   5: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_expiration_of_loans
+   6: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_terminator
+   7: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_statement_at
+   8: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_blocks_group
+   9: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode
+  10: prusti_viper::encoder::encoder::Encoder::encode_procedure
+  11: prusti_viper::encoder::encoder::Encoder::process_encoding_queue
+  12: prusti_viper::verifier::Verifier::verify
+  13: prusti_driver::verifier::verify
+  14: <prusti_driver::callbacks::PrustiCompilerCalls as rustc_driver::Callbacks>::after_analysis
+  15: rustc_interface::queries::<impl rustc_interface::interface::Compiler>::enter
+  16: rustc_span::with_source_map
+  17: rustc_interface::interface::create_compiler_and_run
+  18: scoped_tls::ScopedKey<T>::set
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+
+error: internal compiler error: unexpected panic
+
+note: Prusti or the compiler unexpectedly panicked. This is a bug.
+
+note: We would appreciate a bug report: https://github.com/viperproject/prusti-dev/issues/new
+
+note: Prusti version: commit e8a9345e 2021-05-19 12:46:05 UTC, built on 2021-05-27 13:44:30 UTC
+
+query stack during panic:
+end of query stack
+error: aborting due to 4 previous errors
+

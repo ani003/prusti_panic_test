@@ -1,0 +1,102 @@
+  __          __        __  ___             
+ |__)  _\/_  |__) |  | /__`  |   ____\/_  | 
+ |      /\   |  \ \__/ .__/  |       /\   | 
+
+
+Verification of 8 items...
+error: [Prusti: unsupported feature] unsupported type Opaque(DefId(0:4 ~ padovan_seq[317d]::padovan_recur::{opaque#0}), [])
+  --> panic_files/padovan_seq/padovan_seq.rs:1:1
+   |
+1  | / fn padovan_recur() -> impl std::iter::Iterator<Item = usize> {
+2  | |     let mut p = vec![1, 1, 1];
+3  | |     let mut n = 0;
+4  | |     std::iter::from_fn(move || {
+...  |
+11 | |     })
+12 | | }
+   | |_^
+
+error: [Prusti: unsupported feature] unsupported type Opaque(DefId(0:7 ~ padovan_seq[317d]::padovan_floor::{opaque#0}), [])
+  --> panic_files/padovan_seq/padovan_seq.rs:14:1
+   |
+14 | / fn padovan_floor() -> impl std::iter::Iterator<Item = usize> {
+15 | |     const P: f64 = 1.324717957244746025960908854;
+16 | |     const S: f64 = 1.0453567932525329623;
+17 | |     (0..).map(|x| (P.powf((x - 1) as f64) / S + 0.5).floor() as usize)
+18 | | }
+   | |_^
+
+error: [Prusti: unsupported feature] unsupported type Opaque(DefId(0:12 ~ padovan_seq[317d]::padovan_lsystem::{opaque#0}), [])
+  --> panic_files/padovan_seq/padovan_seq.rs:20:1
+   |
+20 | / fn padovan_lsystem() -> impl std::iter::Iterator<Item = String> {
+21 | |     let mut str = String::from("A");
+22 | |     std::iter::from_fn(move || {
+23 | |         let result = str.clone();
+...  |
+34 | |     })
+35 | | }
+   | |_^
+
+error: [Prusti: unsupported feature] cast statements that create loans are not supported
+  --> panic_files/padovan_seq/padovan_seq.rs:40:16
+   |
+40 |         print!("{} ", p);
+   |                ^^^^^
+
+error: [Prusti internal error] generating fold-unfold Viper statements failed (FailedToObtain(Acc(Field(Field(Field(Local(_1: Ref(ref$closure$0_5$3$9994473058236119414), Position { line: 5, column: 21, id: 28 }), val_ref: Ref(closure$0_5$3$9994473058236119414), Position { line: 5, column: 21, id: 28 }), closure_0: Ref(usize), Position { line: 5, column: 21, id: 28 }), val_int: Int, Position { line: 5, column: 21, id: 28 }), read)))
+  --> panic_files/padovan_seq/padovan_seq.rs:4:24
+   |
+4  |       std::iter::from_fn(move || {
+   |  ________________________^
+5  | |         let pn = if n < 3 { p[n] } else { p[0] + p[1] };
+6  | |         p[0] = p[1];
+7  | |         p[1] = p[2];
+...  |
+10 | |         Some(pn)
+11 | |     })
+   | |_____^
+
+error: [Prusti: unsupported feature] unsupported cast from type 'i32' to type 'f64'
+  --> panic_files/padovan_seq/padovan_seq.rs:17:27
+   |
+17 |     (0..).map(|x| (P.powf((x - 1) as f64) / S + 0.5).floor() as usize)
+   |                           ^^^^^^^^^^^^^^
+
+thread 'rustc' panicked at 'not implemented: ty=Closure(DefId(0:13 ~ padovan_seq[317d]::padovan_lsystem::{closure#0}), [i16, extern "rust-call" fn(()) -> std::option::Option<std::string::String>, (std::string::String,)])', analysis/src/abstract_domains/place_utils.rs:81:17
+stack backtrace:
+   0: rust_begin_unwind
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/std/src/panicking.rs:493:5
+   1: core::panicking::panic_fmt
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/core/src/panicking.rs:92:14
+   2: analysis::abstract_domains::place_utils::expand_one_level
+   3: analysis::abstract_domains::place_utils::expand
+   4: analysis::abstract_domains::definitely_initialized::DefinitelyInitializedState::set_place_uninitialised
+   5: <analysis::abstract_domains::definitely_initialized::DefinitelyInitializedState as analysis::abstract_state::AbstractState>::apply_terminator_effect
+   6: analysis::analyzer::Analyzer::run_fwd_analysis
+   7: prusti_interface::environment::mir_analyses::initialization::compute_definitely_initialized
+   8: prusti_viper::encoder::initialisation::InitInfo::new
+   9: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::new
+  10: prusti_viper::encoder::encoder::Encoder::encode_procedure
+  11: prusti_viper::encoder::encoder::Encoder::process_encoding_queue
+  12: prusti_viper::verifier::Verifier::verify
+  13: prusti_driver::verifier::verify
+  14: <prusti_driver::callbacks::PrustiCompilerCalls as rustc_driver::Callbacks>::after_analysis
+  15: rustc_interface::queries::<impl rustc_interface::interface::Compiler>::enter
+  16: rustc_span::with_source_map
+  17: rustc_interface::interface::create_compiler_and_run
+  18: scoped_tls::ScopedKey<T>::set
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+
+error: internal compiler error: unexpected panic
+
+note: Prusti or the compiler unexpectedly panicked. This is a bug.
+
+note: We would appreciate a bug report: https://github.com/viperproject/prusti-dev/issues/new
+
+note: Prusti version: commit e8a9345e 2021-05-19 12:46:05 UTC, built on 2021-05-27 13:44:30 UTC
+
+query stack during panic:
+end of query stack
+error: aborting due to 6 previous errors
+

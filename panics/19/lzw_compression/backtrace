@@ -1,0 +1,37 @@
+  __          __        __  ___             
+ |__)  _\/_  |__) |  | /__`  |   ____\/_  | 
+ |      /\   |  \ \__/ .__/  |       /\   | 
+
+
+Verification of 5 items...
+thread 'rustc' panicked at 'The rhs place of statement '_46.val_ref := borrow _2 // L14' is currently moved-out or blocked due to a borrow', prusti-viper/src/encoder/foldunfold/semantics.rs:86:21
+stack backtrace:
+   0: rust_begin_unwind
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/std/src/panicking.rs:493:5
+   1: std::panicking::begin_panic_fmt
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/std/src/panicking.rs:435:5
+   2: <prusti_common::vir::ast::stmt::Stmt as prusti_viper::encoder::foldunfold::semantics::ApplyOnState>::apply_on_state
+   3: <prusti_viper::encoder::foldunfold::FoldUnfold as prusti_common::vir::cfg::visitor::CfgReplacer<prusti_viper::encoder::foldunfold::path_ctxt::PathCtxt,prusti_viper::encoder::foldunfold::ActionVec>>::replace_stmt
+   4: prusti_viper::encoder::foldunfold::add_fold_unfold
+   5: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode
+   6: prusti_viper::encoder::encoder::Encoder::encode_procedure
+   7: prusti_viper::encoder::encoder::Encoder::process_encoding_queue
+   8: prusti_viper::verifier::Verifier::verify
+   9: prusti_driver::verifier::verify
+  10: <prusti_driver::callbacks::PrustiCompilerCalls as rustc_driver::Callbacks>::after_analysis
+  11: rustc_interface::queries::<impl rustc_interface::interface::Compiler>::enter
+  12: rustc_span::with_source_map
+  13: rustc_interface::interface::create_compiler_and_run
+  14: scoped_tls::ScopedKey<T>::set
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+
+error: internal compiler error: unexpected panic
+
+note: Prusti or the compiler unexpectedly panicked. This is a bug.
+
+note: We would appreciate a bug report: https://github.com/viperproject/prusti-dev/issues/new
+
+note: Prusti version: commit e8a9345e 2021-05-19 12:46:05 UTC, built on 2021-05-27 13:44:30 UTC
+
+query stack during panic:
+end of query stack

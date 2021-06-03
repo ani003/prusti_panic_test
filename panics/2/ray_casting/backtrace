@@ -1,0 +1,44 @@
+  __          __        __  ___             
+ |__)  _\/_  |__) |  | /__`  |   ____\/_  | 
+ |      /\   |  \ \__/ .__/  |       /\   | 
+
+
+Verification of 8 items...
+thread 'rustc' panicked at 'bound variables are not supported at DefId(0:14 ~ ray_casting[317d]::pt_in_polygon::{closure#0})', prusti-viper/src/utils/type_visitor.rs:286:19
+stack backtrace:
+   0: rust_begin_unwind
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/std/src/panicking.rs:493:5
+   1: core::panicking::panic_fmt
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/core/src/panicking.rs:92:14
+   2: core::option::expect_failed
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/core/src/option.rs:1241:5
+   3: prusti_viper::utils::type_visitor::walk_closure
+   4: prusti_viper::utils::type_visitor::TypeVisitor::visit_ty
+   5: prusti_viper::encoder::borrows::compute_procedure_contract
+   6: prusti_viper::encoder::encoder::Encoder::get_procedure_contract_for_call
+   7: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_impure_function_call
+   8: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_terminator
+   9: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_statement_at
+  10: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_blocks_group
+  11: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode
+  12: prusti_viper::encoder::encoder::Encoder::encode_procedure
+  13: prusti_viper::encoder::encoder::Encoder::process_encoding_queue
+  14: prusti_viper::verifier::Verifier::verify
+  15: prusti_driver::verifier::verify
+  16: <prusti_driver::callbacks::PrustiCompilerCalls as rustc_driver::Callbacks>::after_analysis
+  17: rustc_interface::queries::<impl rustc_interface::interface::Compiler>::enter
+  18: rustc_span::with_source_map
+  19: rustc_interface::interface::create_compiler_and_run
+  20: scoped_tls::ScopedKey<T>::set
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+
+error: internal compiler error: unexpected panic
+
+note: Prusti or the compiler unexpectedly panicked. This is a bug.
+
+note: We would appreciate a bug report: https://github.com/viperproject/prusti-dev/issues/new
+
+note: Prusti version: commit e8a9345e 2021-05-19 12:46:05 UTC, built on 2021-05-27 13:44:30 UTC
+
+query stack during panic:
+end of query stack

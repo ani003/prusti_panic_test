@@ -1,0 +1,168 @@
+  __          __        __  ___             
+ |__)  _\/_  |__) |  | /__`  |   ____\/_  | 
+ |      /\   |  \ \__/ .__/  |       /\   | 
+
+
+Verification of 25 items...
+error: [Prusti: unsupported feature] determining the region of a dereferentiation is not supported
+   --> panic_files/solve_hidato/solve_hidato.rs:172:9
+    |
+172 |         vec![0, 26, 0, 13, 40, 11, u32::MAX, u32::MAX],
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: this error originates in a macro (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: [Prusti internal error] failed to obtain the type of the captured path #0 of closure [closure@panic_files/solve_hidato/solve_hidato.rs:14:18: 18:14]
+  --> panic_files/solve_hidato/solve_hidato.rs:11:5
+   |
+11 | /     fn new(initial_board: Vec<Vec<u32>>) -> Self {
+12 | |         let b = initial_board
+13 | |             .iter()
+14 | |             .map(|r| {
+...  |
+21 | |         Board { cells: b }
+22 | |     }
+   | |_____^
+
+error: [Prusti internal error] generating fold-unfold Viper statements failed (FailedToObtain(Pred(Local(_old$l2$0: Ref(m_Vec$_beg_$m_Option$_beg_$u32$_end_$_sep_$m_Global$_beg_$_end_$_end_), Position { line: 0, column: 0, id: 0 }), read)))
+  --> panic_files/solve_hidato/solve_hidato.rs:28:5
+   |
+28 | /     fn width(&self) -> usize {
+29 | |         self.cells[0].len()
+30 | |     }
+   | |_____^
+
+error: [Prusti internal error] generating fold-unfold Viper statements failed (FailedToObtain(Pred(Local(_old$l9$0: Ref(m_Option$_beg_$u32$_end_), Position { line: 0, column: 0, id: 0 }), read)))
+  --> panic_files/solve_hidato/solve_hidato.rs:35:5
+   |
+35 | /     fn index(&self, (y, x): (usize, usize)) -> &Self::Output {
+36 | |         &self.cells[y][x]
+37 | |     }
+   | |_____^
+
+error: [Prusti: unsupported feature] cast statements that create loans are not supported
+  --> panic_files/solve_hidato/solve_hidato.rs:63:19
+   |
+63 |         write!(f, "{}", output.join("\n"))
+   |                   ^^^^
+
+error: [Prusti internal error] failed to obtain the type of the captured path #0 of closure [closure@panic_files/solve_hidato/solve_hidato.rs:95:23: 95:82]
+   --> panic_files/solve_hidato/solve_hidato.rs:90:5
+    |
+90  | /     fn new(initial_board: Vec<Vec<u32>>) -> Self {
+91  | |         let mut s: (usize, usize) = (0, 0);
+92  | |         let mut f = initial_board
+93  | |             .iter()
+...   |
+112 | |         }
+113 | |     }
+    | |_____^
+
+error: [Prusti: unsupported feature] cast statements that create loans are not supported
+   --> panic_files/solve_hidato/solve_hidato.rs:116:18
+    |
+116 |         println!("{}", self.board);
+    |                  ^^^^
+
+error: [Prusti internal error] tried to encode a projection that accesses the field 0of a variant without first downcasting its enumeration std::option::Option<&u32>
+   --> panic_files/solve_hidato/solve_hidato.rs:119:5
+    |
+119 | /     fn solver(&mut self, current: (usize, usize), n: &u32, mut next: ...
+120 | |         // reached the last number, solving successful
+121 | |         if n > self.fixed.last().unwrap() {
+122 | |             return true;
+...   |
+158 | |         false
+159 | |     }
+    | |_____^
+
+error: [Prusti: unsupported feature] the encoding of this reference copy has not been implemented
+   --> panic_files/solve_hidato/solve_hidato.rs:163:28
+    |
+163 |         self.solver(start, &1, 0);
+    |                            ^^
+
+error: [Prusti: unsupported feature] cast statements that create loans are not supported
+ --> panic_files/solve_hidato/solve_hidato.rs:7:5
+  |
+7 |     cells: Vec<Vec<Option<u32>>>,
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: this error originates in a derive macro (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: [Prusti: unsupported feature] cast statements that create loans are not supported
+  --> panic_files/solve_hidato/solve_hidato.rs:78:5
+   |
+78 |     start: (usize, usize),
+   |     ^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: this error originates in a derive macro (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: [Prusti internal error] failed to obtain the type of the captured path #0 of closure [closure@panic_files/solve_hidato/solve_hidato.rs:16:26: 16:74]
+  --> panic_files/solve_hidato/solve_hidato.rs:14:18
+   |
+14 |   ...   .map(|r| {
+   |  ____________^
+15 | | ...       r.iter()
+16 | | ...           .map(|c| if *c == u32::MAX { None } else { Some(*c) })
+17 | | ...           .collect()
+18 | | ...   })
+   | |_______^
+
+error: [Prusti internal error] generating fold-unfold Viper statements failed (FailedToObtain(Acc(Field(Field(Local(_9: Ref(closure$0_30$3$15523615299696307687), Position { line: 0, column: 0, id: 0 }), closure_0: Ref(ref$m_String$_beg_$_end_), Position { line: 0, column: 0, id: 0 }), val_ref: Ref(m_String$_beg_$_end_), Position { line: 0, column: 0, id: 0 }), read)))
+  --> panic_files/solve_hidato/solve_hidato.rs:51:18
+   |
+51 |               .map(|r| {
+   |  __________________^
+52 | |                 let mut row = String::default();
+53 | |  
+54 | |                 r.iter().for_each(|c| match c {
+...  |
+59 | |                 row
+60 | |             })
+   | |_____________^
+
+error: [Prusti: unsupported feature] cast statements that create loans are not supported
+  --> panic_files/solve_hidato/solve_hidato.rs:57:53
+   |
+57 |                     Some(c) => row.push_str(format!("{:>2} ", c).as_ref()),
+   |                                                     ^^^^^^^^
+
+thread 'rustc' panicked at 'Type usize has no fields', prusti-viper/src/encoder/mir_encoder/mod.rs:103:25
+stack backtrace:
+   0: rust_begin_unwind
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/std/src/panicking.rs:493:5
+   1: std::panicking::begin_panic_fmt
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/std/src/panicking.rs:435:5
+   2: prusti_viper::encoder::mir_encoder::PlaceEncoder::encode_projection
+   3: prusti_viper::encoder::mir_encoder::PlaceEncoder::encode_projection
+   4: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_generic_place
+   5: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_postcondition_expr
+   6: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_impure_function_call
+   7: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_terminator
+   8: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_statement_at
+   9: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_blocks_group
+  10: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode
+  11: prusti_viper::encoder::encoder::Encoder::encode_procedure
+  12: prusti_viper::encoder::encoder::Encoder::process_encoding_queue
+  13: prusti_viper::verifier::Verifier::verify
+  14: prusti_driver::verifier::verify
+  15: <prusti_driver::callbacks::PrustiCompilerCalls as rustc_driver::Callbacks>::after_analysis
+  16: rustc_interface::queries::<impl rustc_interface::interface::Compiler>::enter
+  17: rustc_span::with_source_map
+  18: rustc_interface::interface::create_compiler_and_run
+  19: scoped_tls::ScopedKey<T>::set
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+
+error: internal compiler error: unexpected panic
+
+note: Prusti or the compiler unexpectedly panicked. This is a bug.
+
+note: We would appreciate a bug report: https://github.com/viperproject/prusti-dev/issues/new
+
+note: Prusti version: commit e8a9345e 2021-05-19 12:46:05 UTC, built on 2021-05-27 13:44:30 UTC
+
+query stack during panic:
+end of query stack
+error: aborting due to 14 previous errors
+

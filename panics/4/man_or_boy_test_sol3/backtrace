@@ -1,0 +1,103 @@
+  __          __        __  ___             
+ |__)  _\/_  |__) |  | /__`  |   ____\/_  | 
+ |      /\   |  \ \__/ .__/  |       /\   | 
+
+
+warning: trait objects without an explicit `dyn` are deprecated
+ --> panic_files/man_or_boy_sol3/man_or_boy_sol3.rs:6:19
+  |
+6 | fn a(k: i32, x1: &Fn() -> i32, x2: &Fn() -> i32, x3: &Fn() -> i32, x4: &F...
+  |                   ^^^^^^^^^^^ help: use `dyn`: `dyn Fn() -> i32`
+  |
+  = note: `#[warn(bare_trait_objects)]` on by default
+  = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in the 2021 edition!
+  = note: for more information, see issue #80165 <https://github.com/rust-lang/rust/issues/80165>
+
+warning: trait objects without an explicit `dyn` are deprecated
+ --> panic_files/man_or_boy_sol3/man_or_boy_sol3.rs:6:37
+  |
+6 | ...> i32, x2: &Fn() -> i32, x3: &Fn() -> i32, x4: &Fn() -> i32, x5: &Fn()...
+  |                ^^^^^^^^^^^ help: use `dyn`: `dyn Fn() -> i32`
+  |
+  = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in the 2021 edition!
+  = note: for more information, see issue #80165 <https://github.com/rust-lang/rust/issues/80165>
+
+warning: trait objects without an explicit `dyn` are deprecated
+ --> panic_files/man_or_boy_sol3/man_or_boy_sol3.rs:6:55
+  |
+6 | ...> i32, x3: &Fn() -> i32, x4: &Fn() -> i32, x5: &Fn() -> i32) -> i32 {
+  |                ^^^^^^^^^^^ help: use `dyn`: `dyn Fn() -> i32`
+  |
+  = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in the 2021 edition!
+  = note: for more information, see issue #80165 <https://github.com/rust-lang/rust/issues/80165>
+
+warning: trait objects without an explicit `dyn` are deprecated
+ --> panic_files/man_or_boy_sol3/man_or_boy_sol3.rs:6:73
+  |
+6 | ...> i32, x4: &Fn() -> i32, x5: &Fn() -> i32) -> i32 {
+  |                ^^^^^^^^^^^ help: use `dyn`: `dyn Fn() -> i32`
+  |
+  = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in the 2021 edition!
+  = note: for more information, see issue #80165 <https://github.com/rust-lang/rust/issues/80165>
+
+warning: trait objects without an explicit `dyn` are deprecated
+ --> panic_files/man_or_boy_sol3/man_or_boy_sol3.rs:6:91
+  |
+6 | ...> i32, x5: &Fn() -> i32) -> i32 {
+  |                ^^^^^^^^^^^ help: use `dyn`: `dyn Fn() -> i32`
+  |
+  = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in the 2021 edition!
+  = note: for more information, see issue #80165 <https://github.com/rust-lang/rust/issues/80165>
+
+warning: trait objects without an explicit `dyn` are deprecated
+ --> panic_files/man_or_boy_sol3/man_or_boy_sol3.rs:7:38
+  |
+7 | ...efCell<Weak<Fn() -> i32>>> = Rc::new(RefCell::new(Weak::<fn() -> i32>:...
+  |                ^^^^^^^^^^^ help: use `dyn`: `dyn Fn() -> i32`
+  |
+  = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in the 2021 edition!
+  = note: for more information, see issue #80165 <https://github.com/rust-lang/rust/issues/80165>
+
+warning: trait objects without an explicit `dyn` are deprecated
+  --> panic_files/man_or_boy_sol3/man_or_boy_sol3.rs:10:15
+   |
+10 |     let b: Rc<Fn() -> i32> = Rc::new(move || {
+   |               ^^^^^^^^^^^ help: use `dyn`: `dyn Fn() -> i32`
+   |
+   = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in the 2021 edition!
+   = note: for more information, see issue #80165 <https://github.com/rust-lang/rust/issues/80165>
+
+Verification of 8 items...
+thread 'rustc' panicked at 'not implemented: encoding of 'move _11 as std::rc::Weak<dyn std::ops::Fn() -> i32> (Pointer(Unsize))'', prusti-viper/src/encoder/procedure_encoder.rs:1247:25
+stack backtrace:
+   0: rust_begin_unwind
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/std/src/panicking.rs:493:5
+   1: core::panicking::panic_fmt
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/core/src/panicking.rs:92:14
+   2: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_statement
+   3: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_statement_at
+   4: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_blocks_group
+   5: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode
+   6: prusti_viper::encoder::encoder::Encoder::encode_procedure
+   7: prusti_viper::encoder::encoder::Encoder::process_encoding_queue
+   8: prusti_viper::verifier::Verifier::verify
+   9: prusti_driver::verifier::verify
+  10: <prusti_driver::callbacks::PrustiCompilerCalls as rustc_driver::Callbacks>::after_analysis
+  11: rustc_interface::queries::<impl rustc_interface::interface::Compiler>::enter
+  12: rustc_span::with_source_map
+  13: rustc_interface::interface::create_compiler_and_run
+  14: scoped_tls::ScopedKey<T>::set
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+
+error: internal compiler error: unexpected panic
+
+note: Prusti or the compiler unexpectedly panicked. This is a bug.
+
+note: We would appreciate a bug report: https://github.com/viperproject/prusti-dev/issues/new
+
+note: Prusti version: commit e8a9345e 2021-05-19 12:46:05 UTC, built on 2021-05-27 13:44:30 UTC
+
+query stack during panic:
+end of query stack
+warning: 7 warnings emitted
+

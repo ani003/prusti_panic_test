@@ -1,0 +1,127 @@
+  __          __        __  ___             
+ |__)  _\/_  |__) |  | /__`  |   ____\/_  | 
+ |      /\   |  \ \__/ .__/  |       /\   | 
+
+
+Verification of 30 items...
+error: [Prusti: unsupported feature] determining the region of a dereferentiation is not supported
+  --> panic_files/p_val_correction/p_val_correction.rs:63:9
+   |
+63 | /         input_indexed[i] = (
+64 | |             f64::min(1.0, input_indexed[i].0 * multiplier[i]),
+65 | |             input_indexed[i].1,
+66 | |         );
+   | |_________^
+
+error: [Prusti: unsupported feature] unsupported type Float(F64)
+  --> panic_files/p_val_correction/p_val_correction.rs:90:29
+   |
+90 |       let mut input_indexed = input
+   |  _____________________________^
+91 | |         .iter()
+92 | |         .enumerate()
+93 | |         .map(|(idx, &p_value)| (p_value, idx))
+   | |______________________________________________^
+
+error: [Prusti: unsupported feature] unsupported cast from type 'usize' to type 'f64'
+   --> panic_files/p_val_correction/p_val_correction.rs:157:17
+    |
+157 |     let fsize = p_values.len() as f64;
+    |                 ^^^^^^^^^^^^^^^^^^^^^
+
+error: [Prusti internal error] failed to obtain the type of the captured path #0 of closure [closure@panic_files/p_val_correction/p_val_correction.rs:204:14: 213:10]
+   --> panic_files/p_val_correction/p_val_correction.rs:201:1
+    |
+201 | / fn array_to_string(a: &[f64]) -> String {
+202 | |     a.chunks(5)
+203 | |         .enumerate()
+204 | |         .map(|(index, e)| {
+...   |
+215 | |         .join("\n")
+216 | | }
+    | |_^
+
+error: [Prusti: unsupported feature] cast statements that create loans are not supported
+   --> panic_files/p_val_correction/p_val_correction.rs:229:18
+    |
+229 |         println!("\n{:?}:", ctype);
+    |                  ^^^^^^^^^
+
+error: [Prusti: unsupported feature] the encoding of this reference copy has not been implemented
+  --> panic_files/p_val_correction/p_val_correction.rs:17:10
+   |
+17 | #[derive(Debug)]
+   |          ^^^^^
+   |
+   = note: this error originates in a derive macro (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: [Prusti: unsupported feature] unsupported type Float(F64)
+  --> panic_files/p_val_correction/p_val_correction.rs:46:38
+   |
+46 |         SortDirection::Increasing => |a: f64, b: f64| a.gt(&b),
+   |                                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: [Prusti: unsupported feature] unsupported type Float(F64)
+  --> panic_files/p_val_correction/p_val_correction.rs:47:38
+   |
+47 |         SortDirection::Decreasing => |a: f64, b: f64| a.lt(&b),
+   |                                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: [Prusti: unsupported feature] unsupported type Float(F64)
+  --> panic_files/p_val_correction/p_val_correction.rs:54:14
+   |
+54 |         .map(|(idx, &p_value)| (p_value, idx))
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: [Prusti: unsupported feature] unsupported type Float(F64)
+  --> panic_files/p_val_correction/p_val_correction.rs:93:14
+   |
+93 |         .map(|(idx, &p_value)| (p_value, idx))
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: [Prusti: unsupported feature] unsupported type Float(F64)
+   --> panic_files/p_val_correction/p_val_correction.rs:107:14
+    |
+107 |         .map(|i| ((p_values[i] * n as f64) / (i + 1) as f64))
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: [Prusti: unsupported feature] unsupported type Float(F64)
+   --> panic_files/p_val_correction/p_val_correction.rs:126:22
+    |
+126 |                 .map(|(p, i)| (m_as_float * p) / i as f64)
+    |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+thread 'rustc' panicked at 'not implemented: Float(F64)', prusti-viper/src/encoder/procedure_encoder.rs:5294:22
+stack backtrace:
+   0: rust_begin_unwind
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/std/src/panicking.rs:493:5
+   1: core::panicking::panic_fmt
+             at /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/core/src/panicking.rs:92:14
+   2: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_assign_operand
+   3: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_statement
+   4: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_statement_at
+   5: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_blocks_group
+   6: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode
+   7: prusti_viper::encoder::encoder::Encoder::encode_procedure
+   8: prusti_viper::encoder::encoder::Encoder::process_encoding_queue
+   9: prusti_viper::verifier::Verifier::verify
+  10: prusti_driver::verifier::verify
+  11: <prusti_driver::callbacks::PrustiCompilerCalls as rustc_driver::Callbacks>::after_analysis
+  12: rustc_interface::queries::<impl rustc_interface::interface::Compiler>::enter
+  13: rustc_span::with_source_map
+  14: rustc_interface::interface::create_compiler_and_run
+  15: scoped_tls::ScopedKey<T>::set
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+
+error: internal compiler error: unexpected panic
+
+note: Prusti or the compiler unexpectedly panicked. This is a bug.
+
+note: We would appreciate a bug report: https://github.com/viperproject/prusti-dev/issues/new
+
+note: Prusti version: commit e8a9345e 2021-05-19 12:46:05 UTC, built on 2021-05-27 13:44:30 UTC
+
+query stack during panic:
+end of query stack
+error: aborting due to 12 previous errors
+

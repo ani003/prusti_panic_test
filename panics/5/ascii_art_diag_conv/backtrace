@@ -1,0 +1,169 @@
+  __          __        __  ___             
+ |__)  _\/_  |__) |  | /__`  |   ____\/_  | 
+ |      /\   |  \ \__/ .__/  |       /\   | 
+
+
+Verification of 44 items...
+error: [Prusti internal error] failed to obtain the type of the captured path #0 of closure [closure@panic_files/ascii_art/ascii_art.rs:332:14: 332:32]
+   --> panic_files/ascii_art/ascii_art.rs:329:1
+    |
+329 | / fn normalize(diagram: &str) -> String {
+330 | |     diagram
+331 | |         .lines()
+332 | |         .map(|line| line.trim())
+...   |
+341 | |         })
+342 | | }
+    | |_^
+
+error: [Prusti: unsupported feature] cast statements that create loans are not supported
+   --> panic_files/ascii_art/ascii_art.rs:371:14
+    |
+371 |     println!("{}", diagram);
+    |              ^^^^
+
+error: [Prusti: unsupported feature] unsupported creation of shallow borrows (implicitly created when lowering matches)
+  --> panic_files/ascii_art/ascii_art.rs:61:15
+   |
+61 |         match self.next() {
+   |               ^^^^^^^^^^^
+
+error: [Prusti internal error] generating fold-unfold Viper statements failed (FailedToObtain(Pred(Local(_old$l3$0: Ref(str), Position { line: 0, column: 0, id: 0 }), read)))
+  --> panic_files/ascii_art/ascii_art.rs:18:5
+   |
+18 | /     pub fn name(&self) -> &str {
+19 | |         &self.name
+20 | |     }
+   | |_____^
+
+error: [Prusti: unsupported feature] unsupported type Opaque(DefId(0:19 ~ ascii_art[317d]::{impl#0}::extract_bits::{opaque#0}), [ReLateBound(DebruijnIndex(0), BoundRegion { var: 0, kind: BrNamed(DefId(0:18 ~ ascii_art[317d]::{impl#0}::extract_bits::'a), 'a) })])
+  --> panic_files/ascii_art/ascii_art.rs:34:5
+   |
+34 | /     pub fn extract_bits<'a>(
+35 | |         &self,
+36 | |         bytes: &'a [u8],
+37 | |     ) -> Option<impl Iterator<Item = (usize, Bit)> + 'a> {
+...  |
+47 | |         }
+48 | |     }
+   | |_____^
+
+error: [Prusti internal error] generating fold-unfold Viper statements failed (FailedToObtain(Pred(Local(_old$l10$0: Ref(str), Position { line: 0, column: 0, id: 0 }), read)))
+   --> panic_files/ascii_art/ascii_art.rs:108:5
+    |
+108 | /     pub fn accept(&mut self, line: &str) -> Result<(), ParserError> {
+109 | |         if let Some(state) = self.state.take() {
+110 | |             let line = line.trim();
+111 | |  
+...   |
+124 | |         }
+125 | |     }
+    | |_____^
+
+error: [Prusti: unsupported feature] unsupported creation of shallow borrows (implicitly created when lowering matches)
+   --> panic_files/ascii_art/ascii_art.rs:140:15
+    |
+140 |         match Parser::border_columns(line) {
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: [Prusti: unsupported feature] the encoding of this reference copy has not been implemented
+   --> panic_files/ascii_art/ascii_art.rs:150:23
+    |
+150 |         slots.consume("").map_err(|_| ParserError::FieldExpected)?;
+    |                       ^^
+
+error: [Prusti: unsupported feature] the encoding of this reference copy has not been implemented
+   --> panic_files/ascii_art/ascii_art.rs:206:26
+    |
+206 |         if slots.consume("").is_ok() {
+    |                          ^^
+
+error: [Prusti: unsupported feature] please use a local variable as argument for function 'Consume::consume', not a constant, when calling the function from a loop
+   --> panic_files/ascii_art/ascii_art.rs:236:19
+    |
+236 |             match chars.consume('-') {
+    |                   ^^^^^^^^^^^^^^^^^^
+
+error: internal compiler error: compiler/rustc_typeck/src/check/mod.rs:488:9: can't type-check body of DefId(0:41 ~ ascii_art[317d]::Fields::{constructor#0})
+   --> panic_files/ascii_art/ascii_art.rs:249:1
+    |
+249 | pub struct Fields(pub Vec<Field>);
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+thread 'rustc' panicked at 'Box<Any>', /rustc/79e50bf77928f374921a6bcafee3fcff1915f062/library/std/src/panic.rs:59:5
+stack backtrace:
+   0: std::panicking::begin_panic
+   1: std::panic::panic_any
+   2: rustc_errors::HandlerInner::span_bug
+   3: rustc_errors::Handler::span_bug
+   4: rustc_middle::ty::context::tls::with_opt
+   5: rustc_middle::util::bug::opt_span_bug_fmt
+   6: rustc_middle::util::bug::span_bug_fmt
+   7: rustc_typeck::check::typeck
+   8: rustc_query_system::dep_graph::graph::DepGraph<K>::with_task_impl
+   9: rustc_data_structures::stack::ensure_sufficient_stack
+  10: rustc_query_system::query::plumbing::force_query_with_job
+  11: rustc_query_system::query::plumbing::get_query_impl
+  12: <rustc_query_impl::Queries as rustc_middle::ty::query::QueryEngine>::typeck
+  13: rustc_middle::ty::context::TyCtxt::typeck_opt_const_arg
+  14: rustc_mir_build::build::mir_built
+  15: rustc_query_system::dep_graph::graph::DepGraph<K>::with_task_impl
+  16: rustc_data_structures::stack::ensure_sufficient_stack
+  17: rustc_query_system::query::plumbing::force_query_with_job
+  18: rustc_query_system::query::plumbing::get_query_impl
+  19: <rustc_query_impl::Queries as rustc_middle::ty::query::QueryEngine>::mir_built
+  20: rustc_mir::transform::check_unsafety::unsafety_check_result
+  21: core::ops::function::FnOnce::call_once
+  22: rustc_query_system::dep_graph::graph::DepGraph<K>::with_task_impl
+  23: rustc_data_structures::stack::ensure_sufficient_stack
+  24: rustc_query_system::query::plumbing::force_query_with_job
+  25: rustc_query_system::query::plumbing::get_query_impl
+  26: <rustc_query_impl::Queries as rustc_middle::ty::query::QueryEngine>::unsafety_check_result
+  27: rustc_mir::transform::mir_const
+  28: rustc_query_system::dep_graph::graph::DepGraph<K>::with_task_impl
+  29: rustc_data_structures::stack::ensure_sufficient_stack
+  30: rustc_query_system::query::plumbing::force_query_with_job
+  31: rustc_query_system::query::plumbing::get_query_impl
+  32: <rustc_query_impl::Queries as rustc_middle::ty::query::QueryEngine>::mir_const
+  33: rustc_mir::transform::mir_promoted
+  34: rustc_query_system::dep_graph::graph::DepGraph<K>::with_task_impl
+  35: rustc_data_structures::stack::ensure_sufficient_stack
+  36: rustc_query_system::query::plumbing::force_query_with_job
+  37: rustc_query_system::query::plumbing::get_query_impl
+  38: <rustc_query_impl::Queries as rustc_middle::ty::query::QueryEngine>::mir_promoted
+  39: prusti_interface::environment::procedure::Procedure::new
+  40: prusti_interface::environment::Environment::get_procedure
+  41: prusti_viper::encoder::encoder::Encoder::encode_spec_funcs
+  42: prusti_viper::encoder::encoder::Encoder::encode_const_expr
+  43: prusti_viper::encoder::mir_encoder::MirEncoder::encode_operand_expr
+  44: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_impure_function_call
+  45: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_terminator
+  46: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_statement_at
+  47: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_blocks_group
+  48: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode
+  49: prusti_viper::encoder::encoder::Encoder::encode_procedure
+  50: prusti_viper::encoder::encoder::Encoder::process_encoding_queue
+  51: prusti_viper::verifier::Verifier::verify
+  52: prusti_driver::verifier::verify
+  53: <prusti_driver::callbacks::PrustiCompilerCalls as rustc_driver::Callbacks>::after_analysis
+  54: rustc_interface::queries::<impl rustc_interface::interface::Compiler>::enter
+  55: rustc_span::with_source_map
+  56: rustc_interface::interface::create_compiler_and_run
+  57: scoped_tls::ScopedKey<T>::set
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+
+note: Prusti or the compiler unexpectedly panicked. This is a bug.
+
+note: We would appreciate a bug report: https://github.com/viperproject/prusti-dev/issues/new
+
+note: Prusti version: commit e8a9345e 2021-05-19 12:46:05 UTC, built on 2021-05-27 13:44:30 UTC
+
+query stack during panic:
+#0 [typeck] type-checking `Fields`
+#1 [mir_built] building MIR for `Fields`
+#2 [unsafety_check_result] unsafety-checking `Fields`
+#3 [mir_const] processing MIR for `Fields`
+#4 [mir_promoted] processing `Fields`
+end of query stack
+error: aborting due to 11 previous errors
+

@@ -1,8 +1,7 @@
-// thread 'rustc' panicked at 'key error: __TYPARAM__$T$__'
-// prusti-common/src/vir/ast/typaram.rs:95:79
+// FIXED
 
-fn foo<T: Copy>(values: &[T], ixs: &[usize]) {
-    let _ = ixs.iter().map(|_| values[0]);
+fn foo<T: Copy>(v: &[T], idx: &[usize]) {
+    let _ = idx.iter().map(|_| v[0]);
 }
 
 fn main() {}

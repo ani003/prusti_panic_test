@@ -1,21 +1,27 @@
-fn main() {
-    loop {
-        match Some(1) {
-            Some(c) if c <= 1 => (),
-            _ => (),
+struct Foo {
+    bar: bool,
+}
+
+impl Foo {
+    fn abc(&mut self) {}
+
+    fn xyz(mut self) {
+        loop {
+            self.bar = false;    // Panic trigger requires both statements
+            let _ = self.abc();
         }
     }
 }
 
+fn main() {}
+
 /*
-thread 'rustc' panicked at 'not implemented: NonMutatingUse(ShallowBorrow)', prusti-interface/src/environment/loops.rs:117:22
+thread 'rustc' panicked at 'Adding a write root node to an existing tree.', prusti-interface/src/environment/loops_utils.rs:282:13
 stack backtrace:
-   0: rust_begin_unwind
-             at /rustc/8007b506ac5da629f223b755f5a5391edd5f6d01/library/std/src/panicking.rs:517:5
-   1: core::panicking::panic_fmt
-             at /rustc/8007b506ac5da629f223b755f5a5391edd5f6d01/library/core/src/panicking.rs:93:14
-   2: <prusti_interface::environment::loops::AccessCollector as rustc_middle::mir::visit::Visitor>::visit_place
-   3: prusti_interface::environment::loops::ProcedureLoops::compute_read_and_write_leaves
+   0: std::panicking::begin_panic
+   1: prusti_interface::environment::loops_utils::PermissionTree::add
+   2: prusti_interface::environment::loops_utils::PermissionForest::new::add_paths
+   3: prusti_interface::environment::loops_utils::PermissionForest::new
    4: prusti_viper::encoder::loop_encoder::LoopEncoder::compute_loop_invariant
    5: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_loop_invariant_permissions
    6: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_loop_invariant_exhale_stmts

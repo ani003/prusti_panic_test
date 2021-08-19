@@ -1,19 +1,28 @@
-fn main() {
-    let _ : &'static i32 = unsafe { &*std::ptr::null() };
+fn foo(p: Option<i32>) {
+    loop {      // Requires both loops
+        loop {
+            match p {
+                None => break,  //Requires this break
+                Some(_) => ()
+            }
+        }
+    }
 }
+ 
+fn main() {}
 
 /*
-thread 'rustc' panicked at 'assertion failed: !state.contains_pred(&prefix)', prusti-viper/src/encoder/foldunfold/semantics.rs:90:25
+thread 'rustc' panicked at 'no entry found for key', prusti-viper/src/encoder/procedure_encoder.rs:571:13
 stack backtrace:
    0: rust_begin_unwind
              at /rustc/8007b506ac5da629f223b755f5a5391edd5f6d01/library/std/src/panicking.rs:517:5
    1: core::panicking::panic_fmt
              at /rustc/8007b506ac5da629f223b755f5a5391edd5f6d01/library/core/src/panicking.rs:93:14
-   2: core::panicking::panic
-             at /rustc/8007b506ac5da629f223b755f5a5391edd5f6d01/library/core/src/panicking.rs:50:5
-   3: <vir::legacy::ast::stmt::Stmt as prusti_viper::encoder::foldunfold::semantics::ApplyOnState>::apply_on_state
-   4: <prusti_viper::encoder::foldunfold::FoldUnfold as vir::legacy::cfg::visitor::CfgReplacer<prusti_viper::encoder::foldunfold::path_ctxt::PathCtxt,prusti_viper::encoder::foldunfold::ActionVec>>::replace_stmt
-   5: prusti_viper::encoder::foldunfold::add_fold_unfold
+   2: core::option::expect_failed
+             at /rustc/8007b506ac5da629f223b755f5a5391edd5f6d01/library/core/src/option.rs:1618:5
+   3: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_blocks_group
+   4: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_loop
+   5: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_blocks_group
    6: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode
    7: prusti_viper::encoder::encoder::Encoder::encode_procedure
    8: prusti_viper::encoder::encoder::Encoder::process_encoding_queue

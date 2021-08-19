@@ -1,21 +1,13 @@
-// thread 'rustc' panicked at 'no entry found for key'
-// prusti-interface/src/environment/polonius_info.rs:1169:9
-
-#[derive(Clone)]
-struct Foo<'a> {
-    x: &'a i32,
-}
-
-fn bar(foo: &Foo) {
-    let _ = Foo {
-        ..foo.clone()
-    };
+fn foo(mut buf: &[u8]){
+    while true {    // Must be while
+        buf = &buf[1..];
+    }
 }
 
 fn main() {}
 
 /*
-thread 'rustc' panicked at 'no entry found for key', prusti-interface/src/environment/polonius_info.rs:1169:9
+thread 'rustc' panicked at 'no entry found for key', prusti-viper/src/encoder/procedure_encoder.rs:1715:38
 stack backtrace:
    0: rust_begin_unwind
              at /rustc/8007b506ac5da629f223b755f5a5391edd5f6d01/library/std/src/panicking.rs:517:5
@@ -23,10 +15,10 @@ stack backtrace:
              at /rustc/8007b506ac5da629f223b755f5a5391edd5f6d01/library/core/src/panicking.rs:93:14
    2: core::option::expect_failed
              at /rustc/8007b506ac5da629f223b755f5a5391edd5f6d01/library/core/src/option.rs:1618:5
-   3: prusti_interface::environment::polonius_info::PoloniusInfo::get_loan_at_location
-   4: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_assign_operand
-   5: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_assign
-   6: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_statement_at
+   3: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::construct_vir_reborrowing_dag
+   4: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_expiration_of_loans
+   5: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_blocks_group
+   6: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_loop
    7: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_blocks_group
    8: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode
    9: prusti_viper::encoder::encoder::Encoder::encode_procedure

@@ -1,25 +1,28 @@
-fn main() {
-    loop {
-        match Some(1) {
-            Some(c) if c <= 1 => (),
-            _ => (),
-        }
+struct Foo;
+
+impl Foo {
+    fn bar(&self) {
+        let abc = |x: &Foo| ();
+        abc(self);
     }
 }
 
+fn main() {}
+
 /*
-thread 'rustc' panicked at 'not implemented: NonMutatingUse(ShallowBorrow)', prusti-interface/src/environment/loops.rs:117:22
+thread 'rustc' panicked at 'index out of bounds: the len is 7 but the index is 7', prusti-viper/src/encoder/mir_encoder/mod.rs:411:9
 stack backtrace:
    0: rust_begin_unwind
              at /rustc/8007b506ac5da629f223b755f5a5391edd5f6d01/library/std/src/panicking.rs:517:5
    1: core::panicking::panic_fmt
              at /rustc/8007b506ac5da629f223b755f5a5391edd5f6d01/library/core/src/panicking.rs:93:14
-   2: <prusti_interface::environment::loops::AccessCollector as rustc_middle::mir::visit::Visitor>::visit_place
-   3: prusti_interface::environment::loops::ProcedureLoops::compute_read_and_write_leaves
-   4: prusti_viper::encoder::loop_encoder::LoopEncoder::compute_loop_invariant
-   5: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_loop_invariant_permissions
-   6: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_loop_invariant_exhale_stmts
-   7: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_loop
+   2: core::panicking::panic_bounds_check
+             at /rustc/8007b506ac5da629f223b755f5a5391edd5f6d01/library/core/src/panicking.rs:69:5
+   3: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_local_variable_permission
+   4: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_precondition_expr
+   5: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_impure_function_call
+   6: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_terminator
+   7: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_statement_at
    8: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode_blocks_group
    9: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode
   10: prusti_viper::encoder::encoder::Encoder::encode_procedure

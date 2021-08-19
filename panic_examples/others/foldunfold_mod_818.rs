@@ -1,9 +1,36 @@
-fn main() {
-    let _ : &'static i32 = unsafe { &*std::ptr::null() };
+enum Path<'a> {
+    Map { parent: &'a Path<'a> },
+    Unknown { parent: &'a Path<'a> },
 }
 
+struct Deserializer<'a> {
+    path: Path<'a>,
+}
+
+impl<'a> Deserializer<'a> {
+    fn next_value_seed(&self)
+    {
+        let mut value_de = Deserializer {
+            path: if true {
+                Path::Map {
+                    parent: &self.path,
+                }
+            } else {
+                Path::Unknown {
+                    parent: &self.path,
+                }
+            }
+        };
+        let _ = foo(&value_de);
+    }
+}
+
+fn foo<'a>(_: &'a Deserializer<'a>){}
+
+fn main() {}
+
 /*
-thread 'rustc' panicked at 'assertion failed: !state.contains_pred(&prefix)', prusti-viper/src/encoder/foldunfold/semantics.rs:90:25
+thread 'rustc' panicked at 'assertion failed: perm_amount.is_valid_for_specs()', prusti-viper/src/encoder/foldunfold/mod.rs:818:21
 stack backtrace:
    0: rust_begin_unwind
              at /rustc/8007b506ac5da629f223b755f5a5391edd5f6d01/library/std/src/panicking.rs:517:5
@@ -11,7 +38,7 @@ stack backtrace:
              at /rustc/8007b506ac5da629f223b755f5a5391edd5f6d01/library/core/src/panicking.rs:93:14
    2: core::panicking::panic
              at /rustc/8007b506ac5da629f223b755f5a5391edd5f6d01/library/core/src/panicking.rs:50:5
-   3: <vir::legacy::ast::stmt::Stmt as prusti_viper::encoder::foldunfold::semantics::ApplyOnState>::apply_on_state
+   3: <alloc::vec::Vec<T> as alloc::vec::spec_from_iter::SpecFromIter<T,I>>::from_iter
    4: <prusti_viper::encoder::foldunfold::FoldUnfold as vir::legacy::cfg::visitor::CfgReplacer<prusti_viper::encoder::foldunfold::path_ctxt::PathCtxt,prusti_viper::encoder::foldunfold::ActionVec>>::replace_stmt
    5: prusti_viper::encoder::foldunfold::add_fold_unfold
    6: prusti_viper::encoder::procedure_encoder::ProcedureEncoder::encode
